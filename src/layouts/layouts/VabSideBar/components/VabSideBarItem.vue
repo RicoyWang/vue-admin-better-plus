@@ -10,7 +10,7 @@
       <vab-side-bar-item
         v-for="route in item.children"
         :key="route.path"
-        :full-path="handlePath(route.path)"
+        :full-path="handlePath(item.path)"
         :item="route"
       />
     </template>
@@ -35,7 +35,9 @@
     },
     data() {
       this.onlyOneChild = null
-      return {}
+      return {
+        routeChildren: {},
+      }
     },
     computed: {
       menuComponent() {
@@ -69,7 +71,7 @@
         if (showChildren.length === 0) {
           this.routeChildren = {
             ...parent,
-            path: '',
+            // path: '',
             notShowChildren: true,
           }
           return true

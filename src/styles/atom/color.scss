@@ -1,0 +1,36 @@
+@import './var.scss';
+$colors: (
+	black: #000,
+	333: #333,
+	666: #666,
+	999: #999,
+	ddd: #ddd,
+	eee: #eee,
+	fff: #fff,
+	0ff: #0ff,
+	bff: #bff,
+	F38800: #F38800,
+	EA2E2E: #EA2E2E,
+	0C6BEF: #0C6BEF,
+	10B2EE: #10B2EE,
+	F4C107: #F4C107,
+	27B589: #27B589,
+	1D80FF:$glr_color_1,
+	2ED299:$glr_color_2,
+	FEAB41:$glr_color_3,
+	181C27:$glr_color_4,
+	
+	DCF9EF:$glr_color_10,
+	FFEAD0:$glr_color_11,
+	E3E3E3:$glr_color_12,
+	696969:$glr_color_13,
+	// background: #FFA10D;
+	// color: #FFFFFF; 
+
+);
+:export {
+	@each $name, $value in $colors {
+		#{"" + $name}: $value;
+	  }
+	  /* ... */
+  }

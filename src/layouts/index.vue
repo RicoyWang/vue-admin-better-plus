@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="vab-main main-padding">
-        <vab-ad />
+        <!-- <vab-ad /> -->
         <vab-app-main />
       </div>
     </div>
@@ -36,7 +36,7 @@
           <vab-nav-bar />
           <vab-tabs-bar v-if="tabsBar === 'true' || tabsBar === true" />
         </div>
-        <vab-ad />
+        <!-- <vab-ad /> -->
         <vab-app-main />
       </div>
     </div>
@@ -134,10 +134,87 @@
     },
   }
 </script>
+<style lang="scss">
+  .layout-container-vertical {
+    overflow: hidden;
+    height: 100vh;
+    .vab-main {
+      height: 100%;
+      overflow: auto;
+      .fixed-header {
+        width: 100%;
+        position: sticky;
+      }
+    }
+  }
+  .side-bar-wrapper {
+    height: 100%;
+    background: #fff;
+    .top-menu {
+      height: 100%;
+      display: flex;
+      .primary-menu {
+        height: 100%;
+        width: 64px;
+        background: #21252b;
 
+        .primary-menu-list {
+          border: none;
+          .el-menu-item {
+            height: 70px;
+            color: var(--menu-item-color);
+            padding-left: 0 !important;
+            &.is-active {
+              background: var(--menu-item-bg-active);
+              color: var(--menu-item-color-active);
+              .primary-menu-item {
+                background: var(--menu-item-bg-active);
+              }
+            }
+            .primary-menu-item {
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              margin-bottom: 12px;
+              border-radius: 10px;
+              height: 60px;
+              width: 60px;
+              padding-top: 10px;
+              transition: all 0.3s;
+            }
+            .primary-menu-title {
+              line-height: 40px;
+            }
+          }
+        }
+      }
+      .secondary-menu {
+        width: 220px;
+        .el-menu-item,
+        .el-submenu {
+          color: var(--menu-item-sub-color);
+          &.is-active {
+            background: var(--menu-item-sub-bg-active);
+            color: var(--menu-item-color-active);
+            span {
+              background: var(--menu-item-sub-bg-active);
+              color: var(--menu-item-sub-color-active);
+            }
+          }
+          span,
+          i {
+            color: var(--menu-item-sub-color);
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+</style>
 <style lang="scss" scoped>
   @mixin fix-header {
-    position: fixed;
+    // position: fixed;
     top: 0;
     right: 0;
     left: 0;
@@ -195,7 +272,11 @@
 
     .layout-container-vertical {
       position: relative;
+      display: flex;
 
+      .vab-main {
+        flex: 1;
+      }
       .mask {
         position: fixed;
         top: 0;
@@ -211,9 +292,11 @@
       }
 
       &.fixed {
-        padding-top: calc(#{$base-nav-bar-height} + #{$base-tabs-bar-height});
+        // padding-top: calc(#{$base-nav-bar-height} + #{$base-tabs-bar-height});
       }
-
+      .side-bar-wrapper {
+        height: 100vh;
+      }
       &.fixed.no-tabs-bar {
         padding-top: $base-nav-bar-height;
       }
@@ -221,7 +304,7 @@
       .vab-main {
         position: relative;
         min-height: 100%;
-        margin-left: $base-left-menu-width;
+        // margin-left: $base-left-menu-width;
         background: #f6f8f9;
         transition: $base-transition;
 
@@ -230,7 +313,6 @@
             @include fix-header;
 
             left: $base-left-menu-width;
-            width: $base-right-content-width;
             box-shadow: $base-box-shadow;
             transition: $base-transition;
           }

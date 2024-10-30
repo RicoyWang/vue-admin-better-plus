@@ -1,0 +1,109 @@
+@import './color.scss';
+
+.text-ellipsis {
+	word-wrap: break-word; // 或者使用 overflow-wrap: break-word;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+@for $i from 0 through 120 {
+	.fs-#{$i} { font-size: $i * 1px; }
+	.pl-#{$i} { padding-left: $i * 1px; }
+	.pt-#{$i} { padding-top: $i * 1px; }
+	.pr-#{$i} { padding-right: $i * 1px; }
+	.pb-#{$i} { padding-bottom: $i * 1px; }
+	.px-#{$i} { padding-left: $i * 1px; padding-right: $i * 1px; }
+	.py-#{$i} { padding-top: $i * 1px; padding-bottom: $i * 1px; }
+	.p-#{$i} { padding: $i * 1px; }
+	.ml-#{$i} { margin-left: $i * 1px; }
+	.mt-#{$i} { margin-top: $i * 1px; }
+	.mr-#{$i} { margin-right: $i * 1px; }
+	.mb-#{$i} { margin-bottom: $i * 1px; }
+	.mx-#{$i} { margin-left: $i * 1px; margin-right: $i * 1px; }
+	.my-#{$i} { margin-top: $i * 1px; margin-bottom: $i * 1px; }
+	.m-#{$i} { margin: $i * 1px; }
+  }
+
+
+
+@each $name, $value in $colors {
+		.color-#{"" + $name} { color: $value; }
+  	.bg-#{"" + $name} { background-color: $value;}
+  	.bc-#{"" + $name} { border-color: $value !important;}
+  }
+
+.flex { display: flex; }
+.flex-1 { flex: 1; }
+.flex-2 { flex: 2; }
+.flex-3 { flex: 3; }
+.flex-warp {
+	flex-wrap: wrap;
+}
+.flex-column {
+	flex-direction: column;
+}
+.flex-center { justify-content: center; align-items: center;}
+.flex-col { flex-direction: column; }
+.flex-row-start { justify-content: flex-start; }
+.flex-row-center { justify-content: center; }
+.flex-row-end { justify-content: flex-end; }
+.flex-row-between { justify-content: space-between; }
+.flex-row-around { justify-content: space-around; }
+.flex-col-start { align-items: flex-start; }
+.flex-col-center { align-items: center; }
+.flex-col-end { align-items: flex-end; }
+.flex-col-baseline { align-items: baseline; }
+
+.p-relative { position: relative; }
+.p-absolute { position: absolute; }
+.p-fixed { position: fixed; }
+.l-0 { left: 0; }
+.t-0 { top: 0; }
+.r-0 { right:0; }
+.b-0 { bottom: 0; }
+.w-100 { width: 100%; }
+.w-100i { width: 100% !important; }
+.h-100 { height: 100%; }
+.h-100i { height: 100% !important; }
+.vh-100 { height: 100vh; }
+.fw-bold { font-weight: bold; }
+.fw-400 { font-weight: bold; }
+
+.mx-auto { margin-left: auto; margin-right: auto; }
+
+.bb-1 { border-bottom: 1px solid; }
+.bt-1 { border-top: 1px solid; }
+.scroll-y { overflow-y: auto; }
+.scroll-x { overflow-x: auto; }
+
+.z-1 { z-index: 1; }
+.z-2 { z-index: 2; }
+.z-3 { z-index: 3; }
+
+.pointer {
+	cursor: pointer;
+}
+.not-allowed{
+	cursor: not-allowed;
+}
+.radius-5 {
+	border-radius: 5px;
+}
+.radius-10 {
+	border-radius: 10px;
+}
+.radius-15 {
+	border-radius: 15px;
+}
+.radius-50p {
+	border-radius: 50%;
+}
+.text-center {
+	text-align: center;
+}
+.text-right {
+	text-align: right;
+}
+.text-left {
+	text-align: left;
+}

@@ -1,26 +1,57 @@
 <template>
-  <el-scrollbar :class="{ 'is-collapse': collapse }" class="side-bar-container">
-    <vab-logo />
-    <el-menu
-      :active-text-color="variables['menu-color-active']"
-      :background-color="variables['menu-background']"
-      :collapse="collapse"
-      :collapse-transition="false"
-      :default-active="activeMenu"
-      :default-openeds="defaultOpens"
-      :text-color="variables['menu-color']"
-      :unique-opened="uniqueOpened"
-      mode="vertical"
-    >
-      <template v-for="route in routes">
-        <vab-side-bar-item
-          :key="route.path"
-          :full-path="route.path"
-          :item="route"
-        />
-      </template>
-    </el-menu>
-  </el-scrollbar>
+  <div class="side-bar-wrapper">
+    <!-- 左侧一级菜单 -->
+    <div class="top-menu">
+      <div class="primary-menu">
+        <vab-logo />
+        <el-menu
+          :active-text-color="variables['menu-color-active']"
+          :background-color="variables['menu-background']"
+          :default-active="activeMenu"
+          :text-color="variables['menu-color']"
+          mode="vertical"
+          class="primary-menu-list"
+          :unique-opened="uniqueOpened"
+        >
+          <template v-for="route in routes">
+            <el-menu-item
+              v-if="!route.hidden"
+              :key="route.path"
+              :index="route.path"
+              @click="handlePrimaryMenuClick(route)"
+            >
+              <div class="primary-menu-item" v-if="route.meta">
+                <vab-icon
+                  v-if="route.meta.icon"
+                  :icon="['fas', route.meta.icon]"
+                  class="primary-menu-icon"
+                />
+                <span class="primary-menu-title">{{ route.meta.title }}</span>
+              </div>
+            </el-menu-item>
+          </template>
+        </el-menu>
+      </div>
+      <!-- 右侧二级菜单 -->
+      <el-scrollbar v-if="currentRoute" class="secondary-menu">
+        <el-menu
+          :active-text-color="variables['menu-color-active']"
+          :default-active="activeMenu"
+          :text-color="variables['menu-color']"
+          mode="vertical"
+        >
+          <template v-for="child in currentRoute.children">
+            <vab-side-bar-item
+              v-if="!child.hidden"
+              :key="child.path"
+              :item="child"
+              :fullPath="currentRoute.path"
+            />
+          </template>
+        </el-menu>
+      </el-scrollbar>
+    </div>
+  </div>
 </template>
 <script>
   import variables from '@/styles/variables.scss'
@@ -32,6 +63,7 @@
     data() {
       return {
         uniqueOpened,
+        currentRoute: null,
       }
     },
     computed: {
@@ -54,6 +86,11 @@
       },
       variables() {
         return variables
+      },
+    },
+    methods: {
+      handlePrimaryMenuClick(route) {
+        this.currentRoute = route
       },
     },
   }
@@ -83,7 +120,9 @@
     background: $base-menu-background;
     box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
     transition: width $base-transition-time;
-
+    .secondary-menu {
+      width: 300px;
+    }
     &.is-collapse {
       width: $base-left-menu-width-min;
       border-right: 0;

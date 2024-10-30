@@ -40,6 +40,11 @@ export const asyncRoutes = [
     path: '/',
     component: Layout,
     redirect: '/index',
+    meta: {
+      title: '首页',
+      icon: 'home',
+      affix: true,
+    },
     children: [
       {
         path: 'index',
